@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#0b1325" />
+  <meta name="description" content="Corrections ciblées d'interfaces React : menus déroulants, modales, défilement, mise en page et bogues d'état." />
+  <title>React UI Repair — Corrections React et CSS</title>
+  <style>
+    :root{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color-scheme:dark;--bg:#0b1325;--card:#141f36;--panel:#1b2945;--edge:#2b3a55;--text:#f0f4fb;--muted:#b1bfd4;--accent:#81d6c3;--accent2:#91a9ff}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 60% -10%,#233761 0%,var(--bg) 48%);color:var(--text)}a{color:inherit}button{font:inherit;cursor:pointer}header{max-width:1100px;margin:auto;padding:26px 26px 8px;display:flex;justify-content:space-between;align-items:center;gap:16px}.logo{font-weight:800;letter-spacing:-.03em}.logo span{color:var(--accent)}.lang{display:flex;background:#18243d;border:1px solid var(--edge);border-radius:22px;padding:4px;gap:4px}.lang button{background:transparent;border:0;color:var(--muted);border-radius:16px;padding:7px 13px;font-size:.88rem}.lang button[aria-pressed=true]{background:#344664;color:white}main{max-width:1100px;padding:30px 26px 80px;margin:auto}.hero{padding:58px 0 54px;max-width:860px}.eyebrow{letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-size:.78rem;font-weight:750}.hero h1{font-size:clamp(2.2rem,6vw,4.4rem);letter-spacing:-.055em;line-height:1.06;margin:17px 0 23px}.hero p{color:var(--muted);font-size:clamp(1rem,2.3vw,1.23rem);line-height:1.65;max-width:720px}.actions{display:flex;align-items:center;gap:15px;flex-wrap:wrap;margin-top:29px}.btn{display:inline-flex;align-items:center;justify-content:center;padding:13px 21px;background:var(--accent);color:#0b1928;border-radius:11px;font-weight:750;text-decoration:none;border:none}.btn:hover{background:#a0ecdb}.link{color:#d5e1f7;font-weight:600;text-underline-offset:4px}.facts{display:flex;flex-wrap:wrap;gap:13px;margin-top:33px;color:var(--muted);font-size:.9rem}.facts span{background:#192741;border:1px solid #33435c;padding:8px 11px;border-radius:10px}.sectionhead{font-size:1.8rem;letter-spacing:-.035em;margin:44px 0 9px}.sectionintro{color:var(--muted);line-height:1.6;max-width:780px}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:25px}.card{border:1px solid var(--edge);background:linear-gradient(155deg,#1a2944,var(--card));padding:25px;border-radius:18px}.card h3{font-size:1.18rem;margin:10px 0}.card p{color:var(--muted);line-height:1.55;margin-bottom:12px}.price{font-size:2rem;font-weight:800;letter-spacing:-.04em;margin:20px 0 5px}.price small{font-size:.88rem;color:var(--muted);font-weight:400;letter-spacing:0}.detail{color:#bdcbe0;font-size:.87rem;line-height:1.5}.pill{display:inline-block;color:#b5dfff;background:#253f64;border-radius:30px;padding:6px 11px;font-size:.78rem;font-weight:700}.samples{margin-top:55px}.example{border:1px solid var(--edge);background:#111d32;border-radius:18px;padding:23px;margin-top:23px}.exhead{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}.exhead h3{margin:0;font-size:1.05rem}.toggle{padding:7px;background:#22314a;border:1px solid var(--edge);display:inline-flex;gap:4px;border-radius:12px}.toggle button{padding:8px 13px;border:0;border-radius:8px;background:transparent;color:#bac7dd;font-size:.85rem}.toggle button[aria-pressed=true]{background:#4a6191;color:white}.stage{background:#202e47;border:1px solid #3c5071;border-radius:12px;padding:18px;max-width:540px;min-height:180px;margin-top:20px;overflow:hidden;position:relative;isolation:isolate}.stage-label{display:block;color:#c5d2e9;font-size:.78rem;margin-bottom:6px}.fake-select{max-width:250px;padding:10px 13px;border-radius:8px;background:white;color:#28324a;font-size:.9rem}.fake-options{background:white;color:#28324a;max-width:250px;border:1px solid #9cacc8;border-radius:7px;box-shadow:0 10px 18px #05112666;margin-top:3px;font-size:.89rem}.fake-options div{padding:9px 12px;border-bottom:1px solid #e9ecf4}.fake-options div:last-child{border-bottom:0}.demo-clip .fake-options{height:44px;overflow:hidden}.demo-correct{overflow:visible;min-height:180px;margin-bottom:65px}.demo-correct .fake-options{position:relative;z-index:2}.demo-note{color:#aabbd4;font-size:.88rem;margin-top:12px;min-height:20px}.cta{border:1px solid #3b6c72;background:linear-gradient(145deg,#14343d,#182942);border-radius:20px;padding:32px;margin-top:70px}.cta h2{margin:0 0 13px;font-size:1.8rem}.cta p{color:#c7d6e4;line-height:1.55;max-width:760px}.warning{display:none;margin-top:18px;padding:12px 16px;border-radius:9px;background:#68432c;color:#ffe2bd;font-size:.9rem}.footer{max-width:1100px;margin:0 auto;padding:22px 26px 45px;border-top:1px solid var(--edge);color:#9aaac0;font-size:.84rem}.footer a{color:var(--accent2)}:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+    @media(max-width:760px){.grid{grid-template-columns:1fr}.hero{padding-top:32px}.stage{margin-right:0}.cta{padding:24px}.card{padding:23px}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">&lt;React<span>/</span>Repair&gt;</div>
+    <div class="lang" aria-label="Language / Langue">
+      <button type="button" id="frBtn" aria-pressed="true">FR</button><button type="button" id="enBtn" aria-pressed="false">EN</button>
+    </div>
+  </header>
+  <main>
+    <section class="hero">
+      <div class="eyebrow" data-fr="Dépannage d'interfaces React · Montréal / à distance" data-en="React interface fixes · Montréal / remote">Dépannage d'interfaces React · Montréal / à distance</div>
+      <h1 data-fr="Votre interface React est cassée. Réparons ce qui bloque." data-en="Your React UI is broken. Let's fix the part that's blocking you.">Votre interface React est cassée. Réparons ce qui bloque.</h1>
+      <p data-fr="Menus déroulants invisibles, modales qui débordent, barres de défilement capricieuses, CSS à 125 % de zoom, états React incohérents. Des corrections ciblées, testables et sans refonte inutile." data-en="Clipped dropdowns, overflowing modals, broken scrollbars, CSS at 125% zoom, inconsistent React state. Focused, testable fixes — no unnecessary rebuild.">Menus déroulants invisibles, modales qui débordent, barres de défilement capricieuses, CSS à 125 % de zoom, états React incohérents. Des corrections ciblées, testables et sans refonte inutile.</p>
+      <div class="actions"><a class="btn contact-link" href="#contact" data-fr="Demander une estimation" data-en="Request an estimate">Demander une estimation</a><a class="link" href="#services" data-fr="Voir les forfaits" data-en="See packages">Voir les forfaits</a></div>
+      <div class="facts"><span data-fr="React + CSS" data-en="React + CSS">React + CSS</span><span>Modals / dropdowns / grids</span><span data-fr="FR et EN" data-en="English & French">FR et EN</span><span data-fr="Portée définie avant paiement" data-en="Scope agreed before payment">Portée définie avant paiement</span></div>
+    </section>
+    <section id="services"><h2 class="sectionhead" data-fr="Des corrections, pas des surprises" data-en="Fixed-scope fixes, not surprises">Des corrections, pas des surprises</h2><p class="sectionintro" data-fr="Prix de départ en dollars canadiens. Après avoir vu le bogue et les étapes pour le reproduire, je confirme une portée et un devis avant tout travail." data-en="Starting prices in Canadian dollars. After reviewing the issue and reproduction steps, I confirm scope and a quote before work starts.">Prix de départ en dollars canadiens. Après avoir vu le bogue et les étapes pour le reproduire, je confirme une portée et un devis avant tout travail.</p>
+      <div class="grid">
+        <article class="card"><span class="pill" data-fr="Petit correctif" data-en="Small fix">Petit correctif</span><h3 data-fr="CSS / affichage" data-en="CSS / display issue">CSS / affichage</h3><p data-fr="Un problème visuel isolé : débordement, alignement, z-index, fenêtre modale ou menu déroulant." data-en="One isolated visual issue: overflow, alignment, z-index, modal, or dropdown.">Un problème visuel isolé : débordement, alignement, z-index, fenêtre modale ou menu déroulant.</p><div class="price">C$85 <small data-fr="à partir de" data-en="starting at">à partir de</small></div><div class="detail" data-fr="Livrable : correctif + étapes de validation." data-en="Delivery: patch + validation steps.">Livrable : correctif + étapes de validation.</div></article>
+        <article class="card"><span class="pill" data-fr="Logique UI" data-en="UI logic">Logique UI</span><h3 data-fr="État / interaction" data-en="State / interaction">État / interaction</h3><p data-fr="Filtres, hooks, comportement des listes, ouverture et fermeture, interactions entre composants." data-en="Filters, hooks, list behavior, open/close flows, interactions across components.">Filtres, hooks, comportement des listes, ouverture et fermeture, interactions entre composants.</p><div class="price">C$195 <small data-fr="à partir de" data-en="starting at">à partir de</small></div><div class="detail" data-fr="Livrable : correctif + description du scénario de test." data-en="Delivery: patch + test scenario notes.">Livrable : correctif + description du scénario de test.</div></article>
+        <article class="card"><span class="pill" data-fr="Composant complexe" data-en="Complex component">Composant complexe</span><h3 data-fr="Grid / modale / workflow" data-en="Grid / modal / workflow">Grid / modale / workflow</h3><p data-fr="Bogue impliquant plusieurs composants, une grille complexe ou des interactions difficiles à reproduire." data-en="A bug spanning multiple components, a complex grid, or hard-to-reproduce interaction.">Bogue impliquant plusieurs composants, une grille complexe ou des interactions difficiles à reproduire.</p><div class="price">C$390 <small data-fr="à partir de" data-en="starting at">à partir de</small></div><div class="detail" data-fr="Devis personnalisé après diagnostic." data-en="Custom quote after assessment.">Devis personnalisé après diagnostic.</div></article>
+      </div>
+    </section>
+    <section class="samples"><h2 class="sectionhead" data-fr="Un exemple du type de problème" data-en="Example of the problems I tackle">Un exemple du type de problème</h2><p class="sectionintro" data-fr="Démo illustrative créée pour cette page, pas une capture d'écran d'un projet client. Appuyez sur Avant / Après." data-en="Illustrative demo built for this page, not a screenshot from client work. Toggle Before / After.">Démo illustrative créée pour cette page, pas une capture d'écran d'un projet client. Appuyez sur Avant / Après.</p>
+      <div class="example"><div class="exhead"><h3 data-fr="Menu déroulant coupé par un conteneur" data-en="Dropdown clipped by a container">Menu déroulant coupé par un conteneur</h3><div class="toggle" aria-label="Before / After"><button type="button" id="before" aria-pressed="true" data-fr="Avant" data-en="Before">Avant</button><button type="button" id="after" aria-pressed="false" data-fr="Après" data-en="After">Après</button></div></div><div id="demo-stage" class="stage demo-clip"><span class="stage-label" data-fr="Choisir un élément" data-en="Select an item">Choisir un élément</span><div class="fake-select">Apex Logistics　⌄</div><div class="fake-options"><div>Apex Logistics</div><div>Northshore Supply</div><div>Sample Company</div></div></div><div class="demo-note" id="demo-note" data-fr="Avant : overflow masque les options." data-en="Before: overflow hides the options.">Avant : overflow masque les options.</div></div>
+    </section>
+    <section id="contact" class="cta"><h2 data-fr="Envoyez-moi le bogue" data-en="Send me your bug">Envoyez-moi le bogue</h2><p data-fr="Une capture d'écran, les étapes de reproduction, votre version de React et le résultat attendu suffisent pour commencer. Ne partagez jamais vos secrets, mots de passe ou données client sensibles." data-en="A screenshot, steps to reproduce, React version and expected behavior are enough to start. Never share secrets, passwords or sensitive customer data.">Une capture d'écran, les étapes de reproduction, votre version de React et le résultat attendu suffisent pour commencer. Ne partagez jamais vos secrets, mots de passe ou données client sensibles.</p><a href="#contact" class="btn" id="emailButton" data-fr="Écrire un courriel" data-en="Email for a quote">Écrire un courriel</a><div id="setupWarning" class="warning" data-fr="Configuration requise : remplacez CONTACT_EMAIL dans index.html par votre vraie adresse avant de publier." data-en="Setup required: replace CONTACT_EMAIL in index.html with your real address before publishing.">Configuration requise : remplacez CONTACT_EMAIL dans index.html par votre vraie adresse avant de publier.</div></section>
+  </main>
+  <footer class="footer"><span data-fr="Service indépendant de dépannage. Disponibilité et prix confirmés avant toute mission." data-en="Independent troubleshooting service. Availability and pricing confirmed before each project.">Service indépendant de dépannage. Disponibilité et prix confirmés avant toute mission.</span></footer>
+<script>
+  // Public contact address dedicated to this experiment. Never put secrets here.
+  const CONTACT_EMAIL = 'gordey1478@gmail.com';
+  let locale = 'fr';
+  let demoFixed = false;
+  const text = (fr,en) => locale === 'fr' ? fr : en;
+  function setLang(lang) {
+    locale = lang;
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-fr][data-en]').forEach(el => { el.textContent = el.dataset[lang]; });
+    document.getElementById('frBtn').setAttribute('aria-pressed',String(lang==='fr'));
+    document.getElementById('enBtn').setAttribute('aria-pressed',String(lang==='en'));
+    document.title = lang === 'fr' ? 'React UI Repair — Corrections React et CSS' : 'React UI Repair — Focused React and CSS bug fixes';
+    updateDemo();
+  }
+  function updateDemo() {
+    document.getElementById('demo-stage').className = 'stage ' + (demoFixed ? 'demo-correct' : 'demo-clip');
+    document.getElementById('before').setAttribute('aria-pressed', String(!demoFixed));
+    document.getElementById('after').setAttribute('aria-pressed', String(demoFixed));
+    document.getElementById('demo-note').textContent = demoFixed ? text('Après : les options restent visibles.','After: all options remain visible.') : text('Avant : overflow masque les options.','Before: overflow hides the options.');
+  }
+  document.getElementById('frBtn').addEventListener('click',()=>setLang('fr'));
+  document.getElementById('enBtn').addEventListener('click',()=>setLang('en'));
+  document.getElementById('before').addEventListener('click',()=>{demoFixed=false;updateDemo()});
+  document.getElementById('after').addEventListener('click',()=>{demoFixed=true;updateDemo()});
+  const configured = CONTACT_EMAIL.includes('@') && !CONTACT_EMAIL.includes('REPLACE_WITH_');
+  const emailButton = document.getElementById('emailButton');
+  if(configured) {
+    const subject = encodeURIComponent('React UI bug — request for estimate');
+    const body = encodeURIComponent('React version:\nBug description:\nSteps to reproduce:\nExpected behavior:\nScreenshots (attach separately):\n');
+    emailButton.href = 'mailto:' + CONTACT_EMAIL + '?subject=' + subject + '&body=' + body;
+  } else {
+    document.getElementById('setupWarning').style.display='block';
+    emailButton.addEventListener('click', e => {e.preventDefault();document.getElementById('setupWarning').scrollIntoView({block:'nearest'});});
+  }
+</script>
+</body>
+</html>
